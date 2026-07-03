@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct OdcAppApp: App {
+    @StateObject private var auth = AuthViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if auth.estConnecte {
+                FormationsListView()
+            } else {
+                AccueilView()
+            }
         }
+        .environmentObject(auth)
     }
 }
